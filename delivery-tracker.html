@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Delivery Tracker — Referrals Ops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css">
+<style>
+  .trk-controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px}
+  .trk-controls input[type="search"]{flex:1; min-width:220px; padding:11px 14px; border:1.5px solid var(--line); border-radius:10px; font-size:14.5px; font-family:inherit; background:#fff; color:var(--ink)}
+  .trk-controls select{padding:11px 14px; border:1.5px solid var(--line); border-radius:10px; font-size:14.5px; font-family:inherit; background:#fff; color:var(--ink)}
+  .trk-toggle{display:flex; align-items:center; gap:7px; font-size:13.5px; color:var(--ink-soft); white-space:nowrap; cursor:pointer; user-select:none}
+  .trk-meta{color:var(--muted); font-size:12.5px; margin-left:auto; white-space:nowrap}
+  .trk-state{padding:40px 20px; text-align:center; color:var(--muted)}
+  .trk-state.err{color:var(--warn)}
+  #trkTable{display:none}
+  #trkTable.ready{display:table}
+  #trkTable td, #trkTable th{white-space:pre-wrap; max-width:280px}
+  .trk-status{display:inline-block; font-size:11px; font-weight:800; padding:2px 9px; border-radius:999px; white-space:nowrap}
+  .trk-status.delivered{background:var(--ok-bg); color:var(--ok)}
+  .trk-status.transit{background:var(--warn-bg); color:var(--warn)}
+  .trk-status.pending{background:var(--plan-bg); color:var(--plan)}
+</style>
+</head>
+<body>
+
+<nav class="portal-nav">
+  <div class="pn-wrap">
+    <a class="pn-brand" href="index.html"><span class="pn-logo-chip"><img class="pn-logo" src="assets/skydo-logo.webp" alt="Skydo"></span><span class="sep">/</span><span class="tag">Referrals Ops</span></a>
+    <div class="pn-links">
+      <a href="index.html">Home</a>
+      <a href="playbook.html">CX Playbook</a>
+      <a href="sql-tracking.html">Tracking</a>
+      <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
+      <a href="delivery-tracker.html">Delivery Tracker</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="inventory.html">Inventory &amp; Finance</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Delivery Tracker <span class="status live" style="vertical-align:middle">Live</span></h1>
+    <p>One combined, searchable view of all campaign sheets — customer details, delivery tracking ID, and delivery platform. Pulled live from the sheets themselves, so whatever's typed there shows up here.</p>
+  </div>
+
+  <div class="panel">
+    <div class="trk-controls">
+      <input type="search" id="trkSearch" placeholder="Search by exporter ID, name, tracking ID...">
+      <select id="trkCampaign"><option value="">All campaigns</option></select>
+      <label class="trk-toggle"><input type="checkbox" id="trkShowAll"> Show all columns</label>
+      <span class="trk-meta" id="trkMeta"></span>
+    </div>
+
+    <div id="trkLoading" class="trk-state">Loading the latest data from your sheets…</div>
+    <div id="trkError" class="trk-state err" style="display:none"></div>
+    <div id="trkEmpty" class="trk-state" style="display:none">No rows match that search.</div>
+
+    <div class="tbl-scroll">
+      <table class="data" id="trkTable">
+        <thead><tr id="trkHeadRow"></tr></thead>
+        <tbody id="trkBody"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer>Skydo · Referrals Ops Portal [internal, not indexed]</footer>
+
+<script src="assets/tracker-config.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var loadingEl = document.getElementById('trkLoading');
+  var errorEl = document.getElementById('trkError');
+  var emptyEl = document.getElementById('trkEmpty');
+  var tableEl = document.getElementById('trkTable');
+  var headRow = document.getElementById('trkHeadRow');
+  var bodyEl = document.getElementById('trkBody');
+  var searchEl = document.getElementById('trkSearch');
+  var campaignEl = document.getElementById('trkCampaign');
+  var showAllEl = document.getElementById('trkShowAll');
+  var metaEl = document.getElementById('trkMeta');
+
+  var ALL_ROWS = [];
+  var COLUMNS = [];
+
+  // Columns that exist in the sheet but aren't usually needed for a delivery
+  // query — hidden by default, one checkbox away if someone needs them.
+  // Anything not in this list (including columns added later) shows by default.
+  var DEFAULT_HIDDEN = [
+    'Timestamp', 'Email address', 'Alternate Mobile Number',
+    'Email ID (That you use to login to Skydo dashboard)',
+    'Pincode', 'State', 'countemail',
+    'Would you like to refer more businesses to earn Skydo credits?',
+    'Any other feedback for us to help you better?'
+  ];
+
+  function visibleColumns(){
+    if (showAllEl.checked) return COLUMNS;
+    return COLUMNS.filter(function(c){ return DEFAULT_HIDDEN.indexOf(c) === -1; });
+  }
+
+  function showState(which, message){
+    loadingEl.style.display = which === 'loading' ? '' : 'none';
+    errorEl.style.display = which === 'error' ? '' : 'none';
+    emptyEl.style.display = which === 'empty' ? '' : 'none';
+    tableEl.classList.toggle('ready', which === 'ready');
+    if (message) { (which === 'error' ? errorEl : emptyEl).textContent = message; }
+  }
+
+  function statusClass(v){
+    v = String(v || '').toLowerCase();
+    if (v.indexOf('deliver') !== -1) return 'delivered';
+    if (v.indexOf('transit') !== -1 || v.indexOf('ship') !== -1) return 'transit';
+    return 'pending';
+  }
+
+  function render(){
+    var q = (searchEl.value || '').toLowerCase().trim();
+    var campaign = campaignEl.value;
+    var cols = visibleColumns();
+
+    var rows = ALL_ROWS.filter(function(r){
+      if (campaign && r.Campaign !== campaign) return false;
+      if (!q) return true;
+      return COLUMNS.some(function(c){ return String(r[c] || '').toLowerCase().indexOf(q) !== -1; });
+    });
+
+    headRow.innerHTML = '';
+    cols.forEach(function(c){
+      var th = document.createElement('th');
+      th.textContent = c;
+      headRow.appendChild(th);
+    });
+
+    bodyEl.innerHTML = '';
+    rows.forEach(function(r){
+      var tr = document.createElement('tr');
+      cols.forEach(function(c){
+        var td = document.createElement('td');
+        var val = r[c] == null ? '' : String(r[c]);
+        if (/status/i.test(c) && val) {
+          var span = document.createElement('span');
+          span.className = 'trk-status ' + statusClass(val);
+          span.textContent = val;
+          td.appendChild(span);
+        } else {
+          td.textContent = val;
+        }
+        tr.appendChild(td);
+      });
+      bodyEl.appendChild(tr);
+    });
+
+    showState(rows.length ? 'ready' : 'empty', rows.length ? null : 'No rows match that search.');
+    metaEl.textContent = rows.length + ' of ' + ALL_ROWS.length + ' rows';
+  }
+
+  function onData(data){
+    if (!Array.isArray(data) || data.length === 0){
+      showState('empty', 'No data yet — check that the sheet URLs are filled in on the Apps Script side.');
+      return;
+    }
+
+    var errorRows = data.filter(function(r){ return r._error; });
+    var goodRows = data.filter(function(r){ return !r._error; });
+
+    var colSet = {};
+    goodRows.forEach(function(r){ Object.keys(r).forEach(function(k){ colSet[k] = true; }); });
+    COLUMNS = Object.keys(colSet);
+    ALL_ROWS = goodRows;
+
+    var campaigns = Array.from(new Set(goodRows.map(function(r){ return r.Campaign; }))).sort();
+    campaignEl.innerHTML = '<option value="">All campaigns</option>' +
+      campaigns.map(function(c){ return '<option value="' + c.replace(/"/g,'&quot;') + '">' + c + '</option>'; }).join('');
+
+    if (errorRows.length) {
+      console.warn('Some sheets could not be read:', errorRows);
+    }
+
+    render();
+  }
+
+  function loadData(){
+    if (!TRACKER_API_URL || TRACKER_API_URL.indexOf('PASTE_YOUR_APPS_SCRIPT_URL_HERE') !== -1){
+      showState('error', 'Not set up yet — paste the Apps Script URL into assets/tracker-config.js.');
+      return;
+    }
+
+    var cbName = 'trkCallback_' + Date.now();
+    var timeoutId = setTimeout(function(){
+      showState('error', "Couldn't load data. Make sure you're logged into your Skydo Google account, then refresh.");
+      delete window[cbName];
+    }, 12000);
+
+    window[cbName] = function(data){
+      clearTimeout(timeoutId);
+      delete window[cbName];
+      onData(data);
+    };
+
+    var script = document.createElement('script');
+    script.src = TRACKER_API_URL + (TRACKER_API_URL.indexOf('?') === -1 ? '?' : '&') + 'callback=' + cbName;
+    script.onerror = function(){
+      clearTimeout(timeoutId);
+      showState('error', "Couldn't reach the data source. Make sure you're logged into your Skydo Google account, then refresh.");
+    };
+    document.body.appendChild(script);
+  }
+
+  searchEl.addEventListener('input', render);
+  campaignEl.addEventListener('change', render);
+  showAllEl.addEventListener('change', render);
+  loadData();
+})();
+</script>
+</body>
+</html>
