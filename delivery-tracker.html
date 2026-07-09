@@ -57,7 +57,7 @@
       <span class="trk-meta" id="trkMeta"></span>
     </div>
 
-    <div id="trkLoading" class="trk-state">Loading the latest data from your sheets…</div>
+    <div id="trkLoading" class="trk-state">Loading the latest data from your sheets — this can take up to 20–30 seconds…</div>
     <div id="trkError" class="trk-state err" style="display:none"></div>
     <div id="trkEmpty" class="trk-state" style="display:none">No rows match that search.</div>
 
@@ -198,7 +198,7 @@
     var timeoutId = setTimeout(function(){
       showState('error', "Couldn't load data. Make sure you're logged into your Skydo Google account, then refresh.");
       delete window[cbName];
-    }, 12000);
+    }, 30000);
 
     window[cbName] = function(data){
       clearTimeout(timeoutId);
