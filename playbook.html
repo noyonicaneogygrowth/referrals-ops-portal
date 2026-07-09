@@ -83,6 +83,7 @@
   table.map th{text-align:left; font-size:11.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--blue); padding:6px 10px; border-bottom:1.5px solid #d9e0f5}
   table.map td{padding:8px 10px; border-bottom:1px solid #e6eaf7; color:var(--ink-soft); vertical-align:top}
   table.map td code{background:#eef0fc; color:var(--blue-d); border-radius:5px; padding:1px 6px; font-size:13px}
+  .metric{color:var(--blue-d); font-weight:800; background:#eef0fc; border-radius:5px; padding:1px 7px}
 
   /* ---------- Controls / search (enlarged) ---------- */
   .controls{position:sticky; top:0; z-index:40; background:rgba(244,246,251,.93); backdrop-filter:blur(8px); padding:14px 24px; border-bottom:1px solid var(--line); margin:0 -24px 8px}
@@ -197,7 +198,6 @@
     <div class="pn-links">
       <a href="index.html">Home</a>
       <a href="playbook.html" class="active">CX Playbook</a>
-      <a href="sql-tracking.html">Tracking</a>
       <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
       <a href="delivery-tracker.html">Delivery Tracker</a>
       <a href="campaigns.html">Campaigns</a>
@@ -806,6 +806,25 @@
 
     </div>
   </section>
+
+  <!-- TRACKING GUIDE -->
+  <div class="panel" id="tracking">
+    <h2><span class="kicker">Reporting</span>Tracking Guide</h2>
+    <p class="lead">What to track for the referral programme. Concrete queries are kept private.</p>
+    <div class="tbl-scroll">
+      <table class="map">
+        <thead><tr><th>Metric</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Referral funnel</td><td>Referrals at each stage this month.</td></tr>
+          <tr><td class="metric">New first-time referrers</td><td>Customers referring for the first time.</td></tr>
+          <tr><td class="metric">Share rate</td><td>Share of active customers who refer.</td></tr>
+          <tr><td class="metric">Gifts owed</td><td>Qualified referrers waiting on a gift.</td></tr>
+          <tr><td class="metric">$30 credits owed</td><td>Wallet-credit outlay for the month.</td></tr>
+          <tr><td class="metric">Power referrers</td><td>Top referrers by achieved referrals.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   </div>
 
