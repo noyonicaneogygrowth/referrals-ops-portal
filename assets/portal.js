@@ -6,10 +6,10 @@
 (function () {
   "use strict";
 
-  // --- Highlight the active top-nav link by filename ---------------------
+  // --- Highlight the active nav link by filename --------------------------
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "") here = "index.html";
-  document.querySelectorAll(".pn-links a").forEach(function (a) {
+  document.querySelectorAll(".pn-links a, .sb-link").forEach(function (a) {
     if (a.getAttribute("href") === here) a.classList.add("active");
   });
 
@@ -54,7 +54,7 @@
   });
 
   // --- Guard not-yet-wired action forms ----------------------------------
-  // Any <form data-wip> shows a WIP notice instead of submitting. The fields
+  // Any <form data-wip> shows a notice instead of submitting. The fields
   // and validation are real; only the backend call is pending.
   document.querySelectorAll("form[data-wip]").forEach(function (f) {
     f.addEventListener("submit", function (e) {
@@ -62,7 +62,7 @@
       var name = f.getAttribute("data-wip") || "This action";
       alert(
         name +
-          " isn’t wired to a backend yet (WIP).\n\n" +
+          " isn’t wired to a backend yet (Not Wired).\n\n" +
           "The form, fields and validation are in place — the API call " +
           "and audit-log write get connected in a later phase."
       );
