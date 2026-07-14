@@ -8,71 +8,100 @@
 <title>Referrals Ops Portal — Skydo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/portal.css">
 </head>
 <body>
+<script src="assets/auth-gate.js"></script>
 
-<nav class="portal-nav">
-  <div class="pn-wrap">
-    <a class="pn-brand" href="index.html"><span class="pn-logo-chip"><img class="pn-logo" src="assets/skydo-logo.webp" alt="Skydo"></span><span class="sep">/</span><span class="tag">Referrals Ops</span></a>
-    <div class="pn-links">
-      <a href="index.html">Home</a>
-      <a href="playbook.html">CX Playbook</a>
-      <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
-      <a href="delivery-tracker.html">Delivery Tracker</a>
-      <a href="campaigns.html">Campaigns</a>
-      <a href="inventory.html">Inventory &amp; Finance</a>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><img src="assets/skydo-logo.webp" alt="Skydo"><span class="sb-name">Skydo</span></div>
+    <div class="sidebar-eyebrow">Referrals Ops</div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sb-link active"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg><span>Home</span></a>
+      <a href="playbook.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 5.2c-1.8-1.3-4.4-2-7.3-2v13.7c2.9 0 5.5.7 7.3 2 1.8-1.3 4.4-2 7.3-2V3.2c-2.9 0-5.5.7-7.3 2z"/><path d="M12 5.2v13.7"/></svg><span>CX Playbook</span></a>
+      <a href="sheets-and-ids.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg><span>Campaign Tracker</span></a>
+      <a href="delivery-tracker.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M1.5 6h11.5v9H1.5z"/><path d="M13 9.2h4.3l3.2 3.1V15H13z"/><circle cx="6" cy="17.6" r="1.7"/><circle cx="17.3" cy="17.6" r="1.7"/></svg><span>Delivery Tracker</span></a>
+      <a href="campaigns.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg><span>Campaigns</span></a>
+      <a href="inventory.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 7.5 12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 7.5v9l9 4.5 9-4.5v-9"/><path d="M12 12v9"/></svg><span>Inventory & Finance</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.3M12 18.7V21M4.9 4.9l1.6 1.7M17.5 17.4l1.6 1.7M3 12h2.3M18.7 12H21M4.9 19.1l1.6-1.7M17.5 6.6l1.6-1.7"/></svg><span>Settings</span></a>
+      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9.4a2.9 2.9 0 1 1 4.1 2.6c-.9.5-1.5 1-1.5 2.1"/><circle cx="11.7" cy="17.2" r=".35" fill="currentColor" stroke="none"/></svg><span>Help &amp; Docs</span></a>
+      <span class="sb-version">Version 2.1</span>
+      <span class="sb-copy">&copy; Skydo Referrals Ops</span>
     </div>
-  </div>
-</nav>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <h1 class="topbar-title">Referrals Ops</h1>
+      <form class="topbar-search" id="globalSearch" onsubmit="return false;">
+        <svg class="ic-svg" viewBox="0 0 24 24"><circle cx="10.3" cy="10.3" r="6.3"/><path d="m19.8 19.8-4.2-4.2"/></svg>
+        <input type="search" id="globalSearchInput" placeholder="Search exporter, campaign, tracking ID&hellip;">
+      </form>
+      <div class="topbar-right" id="topbarUser"></div>
+    </header>
+    <main class="content-wrap">
 
-<header class="ops-hero">
-  <div class="wrap">
-    <span class="hero-kicker">Home Page</span>
-    <h1>Skydo Referrals: CX Resolution Portal</h1>
-    <p class="sub">One-stop site to address all your referrals programme-related queries.</p>
-  </div>
-</header>
+      <div class="page-head">
+        <h1 id="welcomeMsg">Welcome back</h1>
+        <p>Here's what's happening with your referrals operations today.</p>
+      </div>
 
-<main class="wrap">
-  <div class="access-head">
-    <h2>Modules</h2>
-  </div>
-  <div class="mod-grid">
-    <a class="mod-card" href="playbook.html">
-      <div class="row1"><span class="ic">📘</span><h3>CX Playbook</h3><span class="status live">Live</span></div>
-      <p>Step-by-step scenarios for every referral query.</p>
-    </a>
-    <a class="mod-card" href="playbook.html#tracking">
-      <div class="row1"><span class="ic">🧮</span><h3>Tracking Guide</h3><span class="status live">Live</span></div>
-      <p>Now part of the CX Playbook — jumps straight to it.</p>
-    </a>
-    <a class="mod-card" href="sheets-and-ids.html">
-      <div class="row1"><span class="ic">🔗</span><h3>Sheets &amp; IDs</h3><span class="status wip">WIP</span></div>
-      <p>Where the programme's sheets and IDs live.</p>
-    </a>
-    <a class="mod-card" href="delivery-tracker.html">
-      <div class="row1"><span class="ic">🚚</span><h3>Delivery Tracker</h3><span class="status live">Live</span></div>
-      <p>Live, combined view of every campaign's delivery data.</p>
-    </a>
-    <a class="mod-card" href="campaigns.html">
-      <div class="row1"><span class="ic">🎛️</span><h3>Campaigns</h3><span class="status planned">Planned</span></div>
-      <p>Manage active and upcoming reward campaigns.</p>
-    </a>
-    <a class="mod-card" href="inventory.html">
-      <div class="row1"><span class="ic">📦</span><h3>Inventory &amp; Orders</h3><span class="status wip">WIP</span></div>
-      <p>Stock levels and gift dispatch tracking.</p>
-    </a>
-    <a class="mod-card" href="inventory.html#finance">
-      <div class="row1"><span class="ic">💰</span><h3>Finance</h3><span class="status wip">WIP</span></div>
-      <p>Reward payouts and budget reconciliation.</p>
-    </a>
-  </div>
-</main>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="lbl">Active Referral Campaigns</div><div class="val">11</div></div>
+        <div class="stat-card"><div class="lbl">Rows Tracked</div><div class="val" id="statRows">&hellip;</div></div>
+        <div class="stat-card"><div class="lbl">Gifts Dispatched</div><div class="val" id="statDispatched">&hellip;</div></div>
+        <div class="stat-card"><div class="lbl">Pending Deliveries</div><div class="val" id="statPending">&hellip;</div></div>
+      </div>
 
-<footer>Skydo · Referrals Ops Portal [internal, not indexed]</footer>
+      <div class="section-title">Quick Access</div>
+      <div class="mod-grid">
+        <a class="mod-card" href="playbook.html">
+          <div class="row1"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 5.2c-1.8-1.3-4.4-2-7.3-2v13.7c2.9 0 5.5.7 7.3 2 1.8-1.3 4.4-2 7.3-2V3.2c-2.9 0-5.5.7-7.3 2z"/><path d="M12 5.2v13.7"/></svg></span><h3>CX Playbook</h3><span class="status live">Live</span></div>
+          <p>Step-by-step scenarios for every referral query.</p>
+        </a>
+        <a class="mod-card" href="sheets-and-ids.html">
+          <div class="row1"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg></span><h3>Campaign Tracker</h3><span class="status wip">Not Wired</span></div>
+          <p>Referral campaign IDs, plus where the programme's sheets live.</p>
+        </a>
+        <a class="mod-card" href="delivery-tracker.html">
+          <div class="row1"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M1.5 6h11.5v9H1.5z"/><path d="M13 9.2h4.3l3.2 3.1V15H13z"/><circle cx="6" cy="17.6" r="1.7"/><circle cx="17.3" cy="17.6" r="1.7"/></svg></span><h3>Delivery Tracker</h3><span class="status live">Live</span></div>
+          <p>Track all campaign deliveries in one place.</p>
+        </a>
+        <a class="mod-card" href="campaigns.html">
+          <div class="row1"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg></span><h3>Campaigns</h3><span class="status planned">Planned</span></div>
+          <p>Manage active and upcoming reward campaigns.</p>
+        </a>
+        <a class="mod-card" href="inventory.html">
+          <div class="row1"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 7.5 12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 7.5v9l9 4.5 9-4.5v-9"/><path d="M12 12v9"/></svg></span><h3>Inventory &amp; Finance</h3><span class="status wip">Not Wired</span></div>
+          <p>Stock levels, gift dispatch, and reward payouts.</p>
+        </a>
+      </div>
 
+      <div class="stat-grid" style="grid-template-columns:1.3fr 1fr; margin-top:26px">
+        <div class="panel" style="margin:0">
+          <h2>Recent Submissions</h2>
+          <p class="lead">Newest rows from the Delivery Tracker feed.</p>
+          <div id="recentList" style="margin-top:10px; font-size:13.5px; color:var(--text-soft)">Loading&hellip;</div>
+          <a href="delivery-tracker.html" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:600">View all activity &rarr;</a>
+        </div>
+        <div class="panel" style="margin:0">
+          <h2>Top Campaigns</h2>
+          <p class="lead">By rows tracked, all time.</p>
+          <div id="topCampaignsList" style="margin-top:10px; font-size:13.5px; color:var(--text-soft)">Loading&hellip;</div>
+          <a href="sheets-and-ids.html" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:600">View all campaigns &rarr;</a>
+        </div>
+      </div>
+
+    </main>
+    <footer>Skydo &middot; Referrals Ops Portal [internal, not indexed]</footer>
+  </div>
+</div>
+
+<script src="assets/tracker-config.js"></script>
 <script src="assets/portal.js"></script>
+<script src="assets/dashboard.js"></script>
 </body>
 </html>

@@ -5,53 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<title>Sheets &amp; Tracking IDs — Referrals Ops</title>
+<title>Campaign Tracker — Referrals Ops</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/portal.css">
 </head>
 <body>
+<script src="assets/auth-gate.js"></script>
 
-<nav class="portal-nav">
-  <div class="pn-wrap">
-    <a class="pn-brand" href="index.html"><span class="pn-logo-chip"><img class="pn-logo" src="assets/skydo-logo.webp" alt="Skydo"></span><span class="sep">/</span><span class="tag">Referrals Ops</span></a>
-    <div class="pn-links">
-      <a href="index.html">Home</a>
-      <a href="playbook.html">CX Playbook</a>
-      <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
-      <a href="delivery-tracker.html">Delivery Tracker</a>
-      <a href="campaigns.html">Campaigns</a>
-      <a href="inventory.html">Inventory &amp; Finance</a>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><img src="assets/skydo-logo.webp" alt="Skydo"><span class="sb-name">Skydo</span></div>
+    <div class="sidebar-eyebrow">Referrals Ops</div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg><span>Home</span></a>
+      <a href="playbook.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 5.2c-1.8-1.3-4.4-2-7.3-2v13.7c2.9 0 5.5.7 7.3 2 1.8-1.3 4.4-2 7.3-2V3.2c-2.9 0-5.5.7-7.3 2z"/><path d="M12 5.2v13.7"/></svg><span>CX Playbook</span></a>
+      <a href="sheets-and-ids.html" class="sb-link active"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg><span>Campaign Tracker</span></a>
+      <a href="delivery-tracker.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M1.5 6h11.5v9H1.5z"/><path d="M13 9.2h4.3l3.2 3.1V15H13z"/><circle cx="6" cy="17.6" r="1.7"/><circle cx="17.3" cy="17.6" r="1.7"/></svg><span>Delivery Tracker</span></a>
+      <a href="campaigns.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg><span>Campaigns</span></a>
+      <a href="inventory.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 7.5 12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 7.5v9l9 4.5 9-4.5v-9"/><path d="M12 12v9"/></svg><span>Inventory & Finance</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.3M12 18.7V21M4.9 4.9l1.6 1.7M17.5 17.4l1.6 1.7M3 12h2.3M18.7 12H21M4.9 19.1l1.6-1.7M17.5 6.6l1.6-1.7"/></svg><span>Settings</span></a>
+      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9.4a2.9 2.9 0 1 1 4.1 2.6c-.9.5-1.5 1-1.5 2.1"/><circle cx="11.7" cy="17.2" r=".35" fill="currentColor" stroke="none"/></svg><span>Help &amp; Docs</span></a>
+      <span class="sb-version">Version 2.1</span>
+      <span class="sb-copy">&copy; Skydo Referrals Ops</span>
     </div>
-  </div>
-</nav>
-
-<main class="wrap">
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <h1 class="topbar-title">Campaign Tracker</h1>
+      <form class="topbar-search" id="globalSearch" onsubmit="return false;">
+        <svg class="ic-svg" viewBox="0 0 24 24"><circle cx="10.3" cy="10.3" r="6.3"/><path d="m19.8 19.8-4.2-4.2"/></svg>
+        <input type="search" id="globalSearchInput" placeholder="Search exporter, campaign, tracking ID&hellip;">
+      </form>
+      <div class="topbar-right" id="topbarUser"></div>
+    </header>
+    <main class="wrap" style="padding:28px 32px; max-width:1120px; margin:0 auto">
   <div class="page-head">
-    <h1>Sheets &amp; Tracking IDs <span class="status wip" style="vertical-align:middle">WIP</span></h1>
-    <p>The Google Sheets the programme runs on. Paste links privately, don't commit them here.</p>
+    <h1>Campaign Tracker <span class="status wip" style="vertical-align:middle">Not Wired</span></h1>
   </div>
 
   <div class="panel">
+    <h2><span class="kicker">Reference</span>All Campaigns</h2>
+    <p class="lead">Every campaign that's existed, newest first — referral campaigns, then affiliate.</p>
+
+    <div class="camp-group ref"><h3>Referral Campaigns</h3><span class="n">11</span></div>
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Campaign ID</th><th>Campaign Name</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">24</td><td>group_a_powerbank</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">23</td><td>group_a_coffee</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">22</td><td>group_a_mokobara</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">21</td><td>alexa_campaign</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">20</td><td>Manual Alexa Gift</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">19</td><td>diwali_2025</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">18</td><td>Referral 30USD + 30USD</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">16</td><td>Skydo referral 1 + 1</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">9</td><td>Skydo referral 2+2</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">3</td><td>Skydo toptal campaign</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">1</td><td>Skydo referral programme</td><td><span class="status live">Active</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="camp-group aff"><h3>Affiliate Campaigns</h3><span class="n">12</span></div>
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Campaign ID</th><th>Campaign Name</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">17</td><td>KAMAL_KISHORE</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">15</td><td>Shraddha</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">14</td><td>CA Nilesh Sarda</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">13</td><td>Pavi</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">12</td><td>Communities</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">11</td><td>Rohan V2</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">10</td><td>Harshad</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">8</td><td>Stanford Seed</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">7</td><td>Remote Indian New Year</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">6</td><td>Enterprise credits - VC</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">5</td><td>Affiliate 1 transaction free</td><td><span class="status live">Active</span></td></tr>
+          <tr><td class="metric">4</td><td>Ahmedabad IT Management Executive Delegation</td><td><span class="status live">Active</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2><span class="kicker">Resources</span>Tracking Links</h2>
     <div class="tbl-scroll">
       <table class="data">
         <thead><tr><th>Sheet</th><th>Purpose</th><th>Link</th></tr></thead>
         <tbody>
-          <tr><td>Gift dispatch &amp; tracking</td><td>One row per dispatched gift.</td><td class="wipcell">WIP — paste URL</td></tr>
-          <tr><td>Gift inventory</td><td>Stock per gift SKU.</td><td class="wipcell">WIP — paste URL</td></tr>
-          <tr><td>Gift-form responses</td><td>Shipping addresses from the form.</td><td class="wipcell">WIP — paste URL</td></tr>
-          <tr><td>Campaign config</td><td>Campaign → gift → eligibility.</td><td class="wipcell">WIP — paste URL</td></tr>
-          <tr><td>Finance &amp; PO tracker</td><td>POs, gift spend, reconciliation.</td><td class="wipcell">WIP — paste URL</td></tr>
+          <tr><td>Gift dispatch &amp; tracking</td><td>One row per dispatched gift.</td><td class="wipcell">Not wired — paste URL</td></tr>
+          <tr><td>Gift inventory</td><td>Stock per gift SKU.</td><td class="wipcell">Not wired — paste URL</td></tr>
+          <tr><td>Gift-form responses</td><td>Shipping addresses from the form.</td><td class="wipcell">Not wired — paste URL</td></tr>
+          <tr><td>Campaign config</td><td>Campaign → gift → eligibility.</td><td class="wipcell">Not wired — paste URL</td></tr>
+          <tr><td>Finance &amp; PO tracker</td><td>POs, gift spend, reconciliation.</td><td class="wipcell">Not wired — paste URL</td></tr>
         </tbody>
       </table>
     </div>
     <p class="muted" style="margin-top:14px">Tracking chain: <code>exporter_id</code> → campaign → gift/SKU → form address → delivery ID + partner → PO#.</p>
   </div>
 </main>
+  </div><!-- /.app-main -->
+</div><!-- /.app-shell -->
 
 <footer>Skydo · Referrals Ops Portal [internal, not indexed]</footer>
 
+<script src="assets/dashboard.js"></script>
 <script src="assets/portal.js"></script>
 </body>
 </html>
