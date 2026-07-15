@@ -3,6 +3,31 @@
    Matches the provided design spec: indigo/emerald palette,
    Inter typography, sidebar navigation, minimal line icons.
    ========================================================= */
+/* ---------- Dark theme ---------- */
+html[data-theme="dark"]{
+  --bg:#0F172A; --surface:#1E293B; --border:#334155;
+  --text:#F1F5F9; --text-soft:#CBD5E1; --text-muted:#94A3B8;
+  --primary:#818CF8; --primary-dark:#A5B4FC; --accent:#34D399; --success:#4ADE80;
+  --warn:#FBBF24; --warn-bg:#452B06;
+  --danger:#FCA5A5; --danger-bg:#450A0A;
+  --live-bg:#064E3B; --live-fg:#6EE7B7;
+  --planned-bg:#4C1D95; --planned-fg:#D8B4FE;
+  --notwired-bg:#334155; --notwired-fg:#94A3B8;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.45);
+  --shadow-lg:0 4px 10px rgba(0,0,0,.4),0 20px 44px rgba(0,0,0,.55);
+}
+html[data-theme="dark"] .sb-link:hover{background:#25304a}
+html[data-theme="dark"] .sb-link.active{background:#2c2f5c}
+html[data-theme="dark"] .sidebar-foot .sb-version{background:#0b3324}
+html[data-theme="dark"] .mod-card .ic{background:#25304a}
+html[data-theme="dark"] .mod-card:nth-child(even) .ic{background:#0b3324}
+html[data-theme="dark"] table.data th{background:#20293d}
+html[data-theme="dark"] table.data tbody tr:hover td{background:#212a40}
+html[data-theme="dark"] code,html[data-theme="dark"] .metric{background:#25304a; color:#a5b4fc}
+html[data-theme="dark"] .camp-group .n{background:#25304a}
+html[data-theme="dark"] .ag-card{background:#1E293B}
+html[data-theme="dark"] .ag-card h1{color:#F1F5F9}
+
 :root{
   --primary:#4F46E5; --primary-dark:#3730A3; --accent:#10B981; --success:#22C55E;
   --bg:#F8FAFC; --surface:#FFFFFF; --border:#E2E8F0;
@@ -155,3 +180,18 @@ footer{max-width:1180px; margin:8px auto 40px; padding:0 32px; color:var(--text-
   .content-wrap{padding:20px 16px 40px}
   .topbar{padding:14px 16px}
 }
+
+/* ---------- Theme picker (Settings) ---------- */
+.theme-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; max-width:600px}
+.theme-opt{border:2px solid var(--border); border-radius:14px; padding:14px; cursor:pointer; background:var(--surface); text-align:left}
+.theme-opt.selected{border-color:var(--primary)}
+.theme-swatch{height:64px; border-radius:9px; margin-bottom:12px; display:flex; overflow:hidden; border:1px solid var(--border)}
+.theme-swatch .a{flex:1; background:#F8FAFC}
+.theme-swatch .b{flex:1; background:#0F172A}
+.theme-swatch.light-only .a{flex:1}
+.theme-swatch.light-only .b{display:none}
+.theme-swatch.dark-only .a{display:none}
+.theme-swatch.dark-only .b{flex:1}
+.theme-opt .name{font-size:13.5px; font-weight:600; color:var(--text); display:flex; align-items:center; gap:8px}
+.theme-opt .check{width:16px; height:16px; border-radius:50%; border:2px solid var(--border); flex:none}
+.theme-opt.selected .check{border-color:var(--primary); background:var(--primary)}

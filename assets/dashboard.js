@@ -45,17 +45,17 @@
     if (!rowsEl || typeof TRACKER_API_URL === 'undefined') return;
 
     if (!TRACKER_API_URL || TRACKER_API_URL.indexOf('PASTE_') !== -1) {
-      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = '—'; });
-      if (recentEl) recentEl.textContent = 'Not set up yet — see assets/tracker-config.js.';
-      if (topCampEl) topCampEl.textContent = 'Not set up yet — see assets/tracker-config.js.';
+      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = 'N/A'; });
+      if (recentEl) recentEl.textContent = 'Not set up yet. See assets/tracker-config.js.';
+      if (topCampEl) topCampEl.textContent = 'Not set up yet. See assets/tracker-config.js.';
       return;
     }
 
     var cbName = 'dashCallback_' + Date.now();
     var timeoutId = setTimeout(function () {
-      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = '—'; });
-      if (recentEl) recentEl.textContent = "Couldn't load — refresh to try again.";
-      if (topCampEl) topCampEl.textContent = "Couldn't load — refresh to try again.";
+      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = 'N/A'; });
+      if (recentEl) recentEl.textContent = "Unable to load. Please refresh to try again.";
+      if (topCampEl) topCampEl.textContent = "Unable to load. Please refresh to try again.";
       delete window[cbName];
     }, 30000);
 
@@ -107,7 +107,7 @@
     script.src = TRACKER_API_URL + (TRACKER_API_URL.indexOf('?') === -1 ? '?' : '&') + 'callback=' + cbName;
     script.onerror = function () {
       clearTimeout(timeoutId);
-      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = '—'; });
+      [rowsEl, dispatchedEl, pendingEl].forEach(function (el) { if (el) el.textContent = 'N/A'; });
     };
     document.body.appendChild(script);
   }

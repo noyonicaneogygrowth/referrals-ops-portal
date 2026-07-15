@@ -63,7 +63,7 @@
       alert(
         name +
           " isn’t wired to a backend yet (Not Wired).\n\n" +
-          "The form, fields and validation are in place — the API call " +
+          "The form, fields and validation are in place. The API call " +
           "and audit-log write get connected in a later phase."
       );
     });
