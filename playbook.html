@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{var t=localStorage.getItem('skydo_theme')||'system';if(t==='system'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
@@ -103,7 +104,6 @@
   /* ---------- Categories & cards ---------- */
   section.cat{margin:16px 0}
   .cat-head{display:flex; align-items:center; gap:12px; cursor:pointer; padding:12px 16px; background:linear-gradient(180deg,#2e33a0,#262a80); color:#fff; border-radius:12px 12px 0 0; user-select:none}
-  .cat-head h3{color:#fff}
   .cat-head .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:var(--green); color:#fff; font-weight:800; font-size:13px}
   .cat-head h3{margin:0; font-size:16px; font-weight:700; flex:1}
   .cat-head .cnt{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); padding:2px 10px; border-radius:999px; font-size:12px; color:#e4ecff}
@@ -172,20 +172,20 @@
 
 <div class="app-shell">
   <aside class="sidebar">
-    <div class="sidebar-brand"><img src="assets/skydo-logo.webp" alt="Skydo"><span class="sb-name">Skydo</span></div>
+    <div class="sidebar-brand"><img src="assets/skydo-logo.webp" alt="Skydo"></div>
     <div class="sidebar-eyebrow">Referrals Ops</div>
     <nav class="sidebar-nav">
       <a href="index.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg><span>Home</span></a>
       <a href="playbook.html" class="sb-link active"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 5.2c-1.8-1.3-4.4-2-7.3-2v13.7c2.9 0 5.5.7 7.3 2 1.8-1.3 4.4-2 7.3-2V3.2c-2.9 0-5.5.7-7.3 2z"/><path d="M12 5.2v13.7"/></svg><span>CX Playbook</span></a>
       <a href="sheets-and-ids.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg><span>Campaign Tracker</span></a>
       <a href="delivery-tracker.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M1.5 6h11.5v9H1.5z"/><path d="M13 9.2h4.3l3.2 3.1V15H13z"/><circle cx="6" cy="17.6" r="1.7"/><circle cx="17.3" cy="17.6" r="1.7"/></svg><span>Delivery Tracker</span></a>
-      <a href="campaigns.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg><span>Campaigns</span></a>
+      <a href="campaigns.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg><span>Campaign Controls</span></a>
       <a href="inventory.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 7.5 12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 7.5v9l9 4.5 9-4.5v-9"/><path d="M12 12v9"/></svg><span>Inventory &amp; Finance</span></a>
     </nav>
     <div class="sidebar-foot">
-      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.3M12 18.7V21M4.9 4.9l1.6 1.7M17.5 17.4l1.6 1.7M3 12h2.3M18.7 12H21M4.9 19.1l1.6-1.7M17.5 6.6l1.6-1.7"/></svg><span>Settings</span></a>
+      <a href="settings.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.3M12 18.7V21M4.9 4.9l1.6 1.7M17.5 17.4l1.6 1.7M3 12h2.3M18.7 12H21M4.9 19.1l1.6-1.7M17.5 6.6l1.6-1.7"/></svg><span>Settings</span></a>
       <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9.4a2.9 2.9 0 1 1 4.1 2.6c-.9.5-1.5 1-1.5 2.1"/><circle cx="11.7" cy="17.2" r=".35" fill="currentColor" stroke="none"/></svg><span>Help &amp; Docs</span></a>
-      <span class="sb-version">Version 2.1</span>
+      <span class="sb-version">Version 3.0</span>
       <span class="sb-copy">&copy; Skydo Referrals Ops</span>
     </div>
   </aside>
@@ -202,11 +202,6 @@
   <div class="page-head">
     <h1 style="font-size:26px">Skydo Referrals: CX Resolution Portal</h1>
     <p>Search for what's going on, follow the steps, and resolve it yourself wherever you can. When nothing here fits, escalating is always the right move.</p>
-    <div class="meta-row">
-      <span class="pill">For: Customer Experience team</span>
-      <span class="pill">24 scenarios across 7 topics</span>
-      <span class="pill v">Version 2.1</span>
-    </div>
   </div>
 
 
@@ -288,7 +283,7 @@
         <ul class="clean">
           <li><b>Activated before 15 June:</b> Powerbank on their first referral who signs up in July.</li>
           <li><b>Multiple referrals in July:</b> Powerbank for the first, $30 for each one after.</li>
-          <li><b>15-day activation window:</b> this is for a referee who already received their $30 — if they go on to refer someone else within 15 days of their own activation, the gift becomes an Amazon Alexa instead.</li>
+          <li><b>15-day activation window:</b> this is for a referee who already received their $30. If they go on to refer someone else within 15 days of their own activation, the gift becomes an Amazon Alexa instead.</li>
         </ul>
         <p style="margin-top:8px"><b>Always confirm in <span class="mb">Metabase</span></b> which campaign and gift apply to this customer before you commit.</p>
       </div></details>
@@ -320,7 +315,7 @@
     <div class="flow" style="margin-top:14px">
       <div class="fstep"><span class="fnum">1</span><div class="ftext"><b>Search this portal.</b> Type the customer's words below. Every scenario has steps to follow.</div></div>
       <div class="fstep"><span class="fnum">2</span><div class="ftext"><b>Look up the data in <span class="mb">Metabase</span>.</b> Use the map below to find IDs, campaigns, states, and the reward ledger. The data explains most "wrong reward" complaints.</div></div>
-      <div class="fstep"><span class="fnum">3</span><div class="ftext"><b>Collect both exporter IDs for any reward change — you need the referrer's and the referee's.</b> The change is made on the <b>referee's</b> account, so the referee's exporter ID must be in your very first message, before approval. Without it, the thread stalls.</div></div>
+      <div class="fstep"><span class="fnum">3</span><div class="ftext"><b>Collect both exporter IDs for any reward change: you need the referrer's and the referee's.</b> The change is made on the <b>referee's</b> account, so the referee's exporter ID must be in your very first message, before approval. Without it, the thread stalls.</div></div>
       <div class="fstep"><span class="fnum">4</span><div class="ftext"><b>Check emails before promising them.</b> The gift-form email is sent <b>by hand</b>. Changing the campaign ID does not send it. Check the ID to know the status (see R6.1), and confirm the mail was really sent before telling the customer.</div></div>
       <div class="fstep"><span class="fnum">5</span><div class="ftext"><b>Send non-referral credits elsewhere.</b> Promotional credits (like a $20 credit with an expiry mail) belong to other campaigns. Route them to that campaign's owner, and keep them out of the referrals channel (see R4.3).</div></div>
       <div class="fstep"><span class="fnum">6</span><div class="ftext"><b>Escalate with everything in one message.</b> Post in <span class="slackch">#referrals-queries</span> only after steps 1 to 5, with: referrer exporter ID, referee exporter ID, the exact ask, the customer's reason, and screenshots. Tag <span class="techops">TechOps</span> only for ledger or campaign ID changes. Go to Atishay or Noyonica last, and only when this portal has no answer.</div></div>
@@ -383,7 +378,7 @@
           <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Yes, the reward can be swapped, case by case. Every swap follows the same path: reason, then approval, then <span class="techops">TechOps</span> updates the ledger, then the customer gets an email. <span class="techops">TechOps</span> makes the change on the referee's account, so the referee's exporter ID is needed from the start.</div></div>
           <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
             <li>Ask the customer <b>why</b> they want the other reward. Approval depends on the reason (for example: the gift is not useful to them, or they got the campaign email and expected that gift).</li>
-            <li>Collect <b>both exporter IDs</b> — the referrer's and the referee's. The referee's ID must be in your first message.</li>
+            <li>Collect <b>both exporter IDs</b>: the referrer's and the referee's. The referee's ID must be in your first message.</li>
             <li>Post in <span class="slackch">#referrals-queries</span> with both IDs, the swap asked for, and the reason.</li>
             <li>Once approved, <span class="techops">TechOps</span> updates the referee's ledger (and the campaign ID if needed).</li>
             <li>Check the change in <span class="mb">Metabase</span>, then make sure the <b>email to the customer goes out</b>. This email is sent manually (see R6.1).</li>
@@ -976,8 +971,8 @@
 
     /* ----- global vocabulary (every word this portal already knows about) -----
        A brand-new campaign gift name (e.g. next month's "armchair") won't be in
-       here yet. Treating any such word as a wildcard — instead of a required
-       match — means a search like "wants armchair not 30" still finds R1.1
+       here yet. Treating any such word as a wildcard, instead of a required
+       match, means a search like "wants armchair not 30" still finds R1.1
        without anyone having to edit this file when the gift changes. */
     var GLOBAL = {};
     faqs.forEach(function(f){ Object.keys(f._tset).forEach(function(t){ GLOBAL[t]=true; }); });

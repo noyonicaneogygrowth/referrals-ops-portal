@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){try{var t=localStorage.getItem('skydo_theme')||'system';if(t==='system'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Settings | Referrals Ops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+<script src="assets/auth-gate.js"></script>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><img src="assets/skydo-logo.webp" alt="Skydo"><span class="sb-name">Skydo</span></div>
+    <div class="sidebar-eyebrow">Referrals Ops</div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg><span>Home</span></a>
+      <a href="playbook.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 5.2c-1.8-1.3-4.4-2-7.3-2v13.7c2.9 0 5.5.7 7.3 2 1.8-1.3 4.4-2 7.3-2V3.2c-2.9 0-5.5.7-7.3 2z"/><path d="M12 5.2v13.7"/></svg><span>CX Playbook</span></a>
+      <a href="sheets-and-ids.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg><span>Campaign Tracker</span></a>
+      <a href="delivery-tracker.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M1.5 6h11.5v9H1.5z"/><path d="M13 9.2h4.3l3.2 3.1V15H13z"/><circle cx="6" cy="17.6" r="1.7"/><circle cx="17.3" cy="17.6" r="1.7"/></svg><span>Delivery Tracker</span></a>
+      <a href="campaigns.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M3 10.2v3.6h3l10 4V6.2l-10 4H3z"/><path d="M6 13.8v3.6a1.5 1.5 0 0 0 3 0v-3.2"/></svg><span>Campaigns</span></a>
+      <a href="inventory.html" class="sb-link"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 7.5 12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 7.5v9l9 4.5 9-4.5v-9"/><path d="M12 12v9"/></svg><span>Inventory & Finance</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="settings.html" class="sb-link active"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.3M12 18.7V21M4.9 4.9l1.6 1.7M17.5 17.4l1.6 1.7M3 12h2.3M18.7 12H21M4.9 19.1l1.6-1.7M17.5 6.6l1.6-1.7"/></svg><span>Settings</span></a>
+      <a class="sb-link disabled"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9.4a2.9 2.9 0 1 1 4.1 2.6c-.9.5-1.5 1-1.5 2.1"/><circle cx="11.7" cy="17.2" r=".35" fill="currentColor" stroke="none"/></svg><span>Help &amp; Docs</span></a>
+      <span class="sb-version">Version 2.1</span>
+      <span class="sb-copy">&copy; Skydo Referrals Ops</span>
+    </div>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <h1 class="topbar-title">Settings</h1>
+      <div class="topbar-right" id="topbarUser"></div>
+    </header>
+    <main class="content-wrap">
+
+      <div class="page-head">
+        <h1>Settings</h1>
+        <p>Preferences for how the portal looks on this device.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Appearance</h2>
+        <p class="lead">Choose how the Referrals Ops Portal looks. This is saved to this browser only.</p>
+        <div class="theme-grid" id="themeGrid" style="margin-top:18px">
+          <button type="button" class="theme-opt" data-theme-choice="light">
+            <div class="theme-swatch light-only"><div class="a"></div></div>
+            <div class="name"><span class="check"></span>Light</div>
+          </button>
+          <button type="button" class="theme-opt" data-theme-choice="dark">
+            <div class="theme-swatch dark-only"><div class="b"></div></div>
+            <div class="name"><span class="check"></span>Dark</div>
+          </button>
+          <button type="button" class="theme-opt" data-theme-choice="system">
+            <div class="theme-swatch"><div class="a"></div><div class="b"></div></div>
+            <div class="name"><span class="check"></span>Match device</div>
+          </button>
+        </div>
+      </div>
+
+    </main>
+    <footer>Skydo &middot; Referrals Ops Portal [internal, not indexed]</footer>
+  </div>
+</div>
+
+<script src="assets/dashboard.js"></script>
+<script src="assets/portal.js"></script>
+<script>
+(function(){
+  "use strict";
+  var STORAGE_KEY = 'skydo_theme';
+  var opts = [].slice.call(document.querySelectorAll('.theme-opt'));
+
+  function apply(choice, persist){
+    if (persist) { try { localStorage.setItem(STORAGE_KEY, choice); } catch (e) {} }
+    var effective = choice;
+    if (choice === 'system') {
+      effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    if (effective === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    opts.forEach(function (o) {
+      o.classList.toggle('selected', o.getAttribute('data-theme-choice') === choice);
+    });
+  }
+
+  var current = 'system';
+  try { current = localStorage.getItem(STORAGE_KEY) || 'system'; } catch (e) {}
+  apply(current, false);
+
+  opts.forEach(function (o) {
+    o.addEventListener('click', function () { apply(o.getAttribute('data-theme-choice'), true); });
+  });
+})();
+</script>
+</body>
+</html>
